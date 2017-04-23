@@ -9,7 +9,6 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { analytics } from '../config';
 
 class Html extends React.Component {
   static propTypes = {
@@ -55,17 +54,6 @@ class Html extends React.Component {
             dangerouslySetInnerHTML={{ __html: children }}
           />
           {scripts.map(script => <script key={script} src={script} />)}
-          {analytics.google.trackingId &&
-            <script
-              // eslint-disable-next-line react/no-danger
-              dangerouslySetInnerHTML={{ __html:
-              'window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;' +
-              `ga('create','${analytics.google.trackingId}','auto');ga('send','pageview')` }}
-            />
-          }
-          {analytics.google.trackingId &&
-            <script src="https://www.google-analytics.com/analytics.js" async defer />
-          }
         </body>
       </html>
     );
