@@ -4,10 +4,27 @@ import { range } from 'lodash'
 import './GameView.scss'
 
 
-export const GameView = () => (
-  <div>
-    <h4>GameView</h4>
-  </div>
-)
+export default class GameView extends React.Component {
 
-export default GameView
+  render () {
+    let tableBoard = [];
+    _.range(3).map((i) => {
+      let trCell = [];
+      _.range(3).map((j) =>
+        trCell.push(<td className={"gameboard-td"} key={( i*3 + j ).toString()}>{ i*3 + j }</td>)
+      );
+      tableBoard.push(<tr key={"tr" + i}>{trCell}</tr>)
+    });
+
+    return (
+      <div>
+        <h4>GameView</h4>
+        <table>
+          <tbody>
+            { tableBoard }
+        </tbody>
+        </table>
+      </div>
+    )
+  }
+}
